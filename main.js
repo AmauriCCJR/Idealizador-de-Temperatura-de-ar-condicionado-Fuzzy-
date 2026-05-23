@@ -1,50 +1,44 @@
-var frio = 13;
-var morno = 22;
-var quente = 28;
-var temp = document.getElementById('temp');
 var mensagem = document.getElementById('msg');
 var valorLabel = document.getElementById('graus');
 var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
-var valorOposto;
+const totalTemp = ['mtFrio','frio','calor','padrao'];
 
-
-slider.addEventListener('click', function(){
+slider.addEventListener('input', function(){
 valorLabel.textContent = slider.value + " °C";
 
-    const min = parseFloat(slider.min);
-    const max = parseFloat(slider.max);
-    var valorAtual = parseFloat(slider.value);
-    valorOposto = max + min - slider.value;
+    let valorAtual = parseFloat(slider.value);
+    valorIdeal = calcularTemperatura(valorAtual)
 
-    if (slider.value < 17){
-        if (slider.value <= 5){
-            var dif = (parseFloat(slider.value) + 30);
-             mensagem.textContent = `Temperatura Fria: Recomendado deixar o ar-condicionado em ${dif} ºC`;
-        }
-         if (slider.value > 5){
-            var dif = (parseFloat(slider.value) + 10);
-             mensagem.textContent = `Temperatura Fria: Recomendado deixar o ar-condicionado em ${dif} ºC`;
-        }
-        
-        var dif = (parseFloat(slider.value) + 30);
-       
-
-        mensagem.textContent = `Temperatura Fria: Recomendado deixar o ar-condicionado em ${dif} ºC`;
+    if (valorAtual < 10){
+        trocarTemp('mtFrio', 'Muito Frio');
     }
-
-    if (slider.value > 17 && slider.value <= 22){
-        mensagem.textContent = `Temperatura Morna: Recomendado deixar o ar-condicionado Desligado`;
-   }  if (slider.value > 22) {
-        var dif = (slider.value) - ((slider.value - 22)*2);
-
-        mensagem.textContent = `Temperatura Quente: Recomendado deixar o ar-condicionado em ${dif} ºC`;
-   }
-   
-
+    else if (valorAtual < 22){
+        trocarTemp('frio', 'Frio');
+    }
+    else if (valorAtual <= 26){
+        trocarTemp('padrao', 'Morna');
+    }
+    else if (valorAtual > 26){
+        trocarTemp('calor', 'Calor');
+    }
    
 });
 
+function trocarTemp(temperatura, desc){
+    mensagem.classList.remove(...totalTemp);
+    mensagem.classList.add(temperatura)
+
+
+    mensagem.innerHTML = `Temperatura: ${desc}<br>
+                        Recomendado deixar o ar-condicionado em <br>
+                        <b>${valorIdeal}</b> ºC`;
+}
+
+function calcularTemperatura(tempExterna) {
+    //20 ~ 22 temperatura ideal 
+  let temperaturaIdeal = 22 + (tempExterna - 28) * 0.3;
+  return Math.round(Math.max(18, Math.min(26, temperaturaIdeal)));
+}
 
 
 

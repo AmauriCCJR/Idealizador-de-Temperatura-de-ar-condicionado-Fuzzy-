@@ -4,6 +4,14 @@ body{
     text-transform: uppercase;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+article{
+  margin-top: 15%;
+  background-color:rgb(24, 24, 24);
+  border: 1px;
+  border-radius: 15px;
+  padding: 30px;
+  width: 400px;
+}
 .slider {
   -webkit-appearance: none;
   width: 50%;
@@ -40,4 +48,17 @@ body{
 #msg{
     font-size: 25px;
     font-weight: 600;
+}
+.padrao{
+  color: #fff;
+}
+.mtFrio{
+  color: aquamarine;
+}
+.frio{
+  color: aqua;
+}
+
+.calor{
+  color: chocolate;
 }
