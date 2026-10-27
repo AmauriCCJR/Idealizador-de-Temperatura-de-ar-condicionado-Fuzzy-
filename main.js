@@ -13,7 +13,7 @@ valorLabel.textContent = slider.value + " °C";
         trocarTemp('mtFrio', 'Muito Frio');
     }
     else if (valorAtual < 22){
-        trocarTemp('frio', 'Frio');
+        trocarTemp('frio', 'Frio');//koko
     }
     else if (valorAtual <= 26){
         trocarTemp('padrao', 'Morna');
